@@ -10,8 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor@Setter@Getter
 public class Passenger extends User{
 
+    private Statut statut = Statut.En_Cours;
 
-    public Passenger(String nom, String encode, String email, String prenom, String telephone, Gender sexe, int age, int nombreVoya, Boolean banned) {
+    public Passenger(String nom, String encode, String email, String prenom, String telephone, Gender sexe, int age, int nombreVoya, Boolean banned , Statut status) {
         super(nom, encode, email, prenom, telephone, sexe,age,nombreVoya,banned);
+        this.statut = status;
     }
 }

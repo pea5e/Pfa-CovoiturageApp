@@ -6,7 +6,6 @@ import pfe.emsi.covoiturage.users.Dao.Gender;
 @Data
 public class UserDto {
     private String nom;
-    private String password;
     private String email;
     private String prenom;
     private String telephone;
