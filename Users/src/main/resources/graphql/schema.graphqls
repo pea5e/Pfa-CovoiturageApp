@@ -1,45 +1,79 @@
-type Mutation{
-    createUser(userDto:UserInput,passwordDto:PasswordInput):UserDto!
-    createPassenger(userDto:UserInput,passwordDto:PasswordInput):UserDto!
-    createDriver(userDto:UserInput,passwordDto:PasswordInput):UserDto!
-    getAllUsers
+
+type Mutation {
+    createUser(userDto: UserInput, passwordDto: PasswordInput): UserDto!
+    createPassenger(userDto: UserInput, passwordDto: PasswordInput): UserDto!
+    createDriver(userDto: UserInput, passwordDto: PasswordInput): UserDto!
+    updatePassword(userId: ID!, passwordDto: PasswordInput): Boolean!
+    updateDriver(userId: ID!, userDto: UserInput): Boolean!
+    updatePassenger(userId: ID!, userDto: UserInput): Boolean!
+    assignVehicle(userId: ID!, vehicleDto: VehicleInput): Vehicle!
+}
+
+type Query {
+    getAllUsers: [UserDto!]!
+    getUser(userId: ID!): UserDto
+    getAllDrivers: [DriverDto!]!
+    getAllPassengers: [PassengerDto!]!
+}
+
+input UserInput {
+    name: String
+    nom: String
+    email: String
+    prenom: String
+    telephone: String
+    sexe: Gender
+    age: Int
+    nombreVoya: Int
+    nPermis: String
+    cin: String
+    banned: Boolean
 }
 
 input PasswordInput {
-    pwdactuel:String
-    pwdNouveau:String
+    currentPassword: String!
+    newPassword: String!
 }
 
-input UserInput{
-    name:String
-    nom:String
-    email:String
-    prenom:String
-    telephone:String
-    sexe:Gender
-    age:Int
-    nombre_voya:Int
-    N_permis:String
-    cin:String
-    banned:Boolean
-
+input VehicleInput {
+    make: String
+    model: String
+    licensePlate: String
 }
 
-type UserDto{
-    name:String
-    nom:String
-    email:String
-    prenom:String
-    telephone:String
-    sexe:Gender
-    age:Int
-    nombre_voya:Int
-    N_permis:String
-    cin:String
-    banned:Boolean
-
+type UserDto {
+    id: ID!
+    name: String
+    nom: String
+    email: String
+    prenom: String
+    telephone: String
+    sexe: Gender
+    age: Int
+    nombreVoya: Int
+    nPermis: String
+    cin: String
+    banned: Boolean
 }
 
 enum Gender {
-   Homme,Femme
+    Homme,Femme
+}
+
+
+type DriverDto {
+    id: ID!
+    userDetails: UserDto
+    vehicle: Vehicle
+}
+
+
+type PassengerDto {
+    id: ID!
+    userDetails: UserDto
+}
+
+
+type Vehicle {
+    id: ID!
 }

@@ -10,9 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter@Getter
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE )
     private Long id;
     private String nom;
     private String password;
