@@ -7,23 +7,34 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Gateway" />
         <module name="Discovery" />
         <module name="Notification-Service" />
-        <module name="Voyage-Service" />
         <module name="Users" />
-        <module name="Gateway" />
-        <module name="RH" />
+      </profile>
+      <profile name="Annotation profile for Voyage" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="Voyage" />
+        <module name="Notification" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Discovery-Service" target="23" />
-      <module name="Voyage" target="17" />
+      <module name="PaymentService" target="17" />
+      <module name="RH" target="17" />
+      <module name="Voyage-Service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Discovery" options="-parameters" />
       <module name="Gateway" options="-parameters" />
+      <module name="Notification" options="-parameters" />
       <module name="Notification-Service" options="-parameters" />
       <module name="RH" options="-parameters" />
       <module name="Users" options="-parameters" />
