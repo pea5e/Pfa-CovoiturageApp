@@ -1,10 +1,28 @@
 type Mutation{
-    createUser(userDto:UserDto,passwordDto:PasswordDto):UserDto!
+    createUser(userDto:UserInput,passwordDto:PasswordInput):UserDto!
+    createPassenger(userDto:UserInput,passwordDto:PasswordInput):UserDto!
+    createDriver(userDto:UserInput,passwordDto:PasswordInput):UserDto!
+    getAllUsers
 }
 
-type PasswordDto {
+input PasswordInput {
     pwdactuel:String
     pwdNouveau:String
+}
+
+input UserInput{
+    name:String
+    nom:String
+    email:String
+    prenom:String
+    telephone:String
+    sexe:Gender
+    age:Int
+    nombre_voya:Int
+    N_permis:String
+    cin:String
+    banned:Boolean
+
 }
 
 type UserDto{

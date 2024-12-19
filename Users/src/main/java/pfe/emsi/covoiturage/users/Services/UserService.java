@@ -70,13 +70,17 @@ public class UserService {
         return userRepos.findAll();
     }
 
-    public Driver getDriver(Long userId) {
-        return driverRepos.findById(userId).orElseThrow(() ->new NoSuchElementException("No driver found"));
+    public User getUser(Long userId) {
+        if(userId == null)
+        {
+            throw new IllegalArgumentException("User id is missing");
+        }
+        return userRepos.findById(userId).orElseThrow(() ->new NoSuchElementException("No driver found"));
     }
-
-    public Passenger getPassenger(Long userId) {
-        return passengerRepos.findById(userId).orElseThrow(() ->new NoSuchElementException("No passenger found"));
-    }
+//
+//    public Passenger getPassenger(Long userId) {
+//        return passengerRepos.findById(userId).orElseThrow(() ->new NoSuchElementException("No passenger found"));
+//    }
 
     public List<Driver> getAllDrivers() {
         return driverRepos.findAll();
@@ -88,7 +92,11 @@ public class UserService {
 
 
     //Update-Section
-    public Boolean changePassword(User user, PasswordDto passwordDto) {
+    public Boolean changePassword(Long userid, PasswordDto passwordDto) {
+        if(userid == null || passwordDto == null || passwordDto.getNouveaupassword() == null) {
+            throw new NoSuchElementException("User data or password is missing");
+        }
+        User user = userRepos.findById(userid).orElseThrow(() ->new NoSuchElementException("No driver found"));
         if(passwordEncoder.matches(passwordDto.getPasswordActuel(), user.getPassword()))
         {
             user.setPassword(passwordEncoder.encode(passwordDto.getNouveaupassword()));
@@ -129,6 +137,10 @@ public class UserService {
 
 
     public Vehicule AttribuerVehicule(Long userId, VehiculeDto vehiculeDto) {
+        if(userId == null || vehiculeDto == null)
+        {
+            throw new IllegalArgumentException("User data or vehicule is missing");
+        }
         Driver driver = driverRepos.findById(userId).orElseThrow(() ->new NoSuchElementException("No driver found"));
         Vehicule vehicule = DtoMapping.DtotoVehicule(vehiculeDto);
         vehicule.setDriver(driver);
