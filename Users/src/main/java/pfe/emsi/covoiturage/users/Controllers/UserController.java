@@ -4,6 +4,7 @@ import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pfe.emsi.covoiturage.users.Dao.Driver;
@@ -17,7 +18,8 @@ import pfe.emsi.covoiturage.users.Services.UserService;
 
 import java.util.List;
 
-@RestController("/User")
+@RestController
+@RequestMapping("/User")
 public class UserController {
 
     @Autowired
