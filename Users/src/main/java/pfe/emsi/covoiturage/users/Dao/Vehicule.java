@@ -12,7 +12,7 @@ public class Vehicule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String immatricula;
+//    private String immatricula;
     private String plate;
     private String model;
     private Statut statut = Statut.En_Cours;

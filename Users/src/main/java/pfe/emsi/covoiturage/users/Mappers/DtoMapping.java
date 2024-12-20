@@ -42,7 +42,7 @@ public class DtoMapping {
         vehicule.setType(vehiculeDto.getType());
         vehicule.setPlate(vehiculeDto.getPlate());
         vehicule.setModel(vehiculeDto.getModel());
-        vehicule.setImmatricula(vehiculeDto.getImmatricula());
+//        vehicule.setImmatricula(vehiculeDto.getImmatricula());
         return vehicule;
     }
 }
