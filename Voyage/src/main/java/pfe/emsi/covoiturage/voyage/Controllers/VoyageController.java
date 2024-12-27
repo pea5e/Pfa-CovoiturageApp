@@ -1,42 +1,67 @@
 package pfe.emsi.covoiturage.voyage.Controllers;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.ws.rs.core.HttpHeaders;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.ContextValue;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.server.WebGraphQlInterceptor;
+import org.springframework.graphql.server.WebGraphQlRequest;
+import org.springframework.graphql.server.WebGraphQlResponse;
+import org.springframework.web.bind.annotation.*;
+import pfe.emsi.covoiturage.voyage.Entity.User;
 import pfe.emsi.covoiturage.voyage.Entity.Vehicule;
-import pfe.emsi.covoiturage.voyage.Feign.VehiculeFetch;
+import pfe.emsi.covoiturage.voyage.Entity.Voyage;
+import pfe.emsi.covoiturage.voyage.Feign.UserFetch;
 import pfe.emsi.covoiturage.voyage.Service.VoyageService;
+import reactor.core.publisher.Mono;
+
+import java.util.Collections;
+import java.util.List;
+
+
 
 @RestController
 public class VoyageController {
 
-    private  final VehiculeFetch vehiculeFetch;
+    private  final UserFetch userFetch;
     private final VoyageService voyageService;
 
-    public VoyageController(VehiculeFetch vehiculeFetch, VoyageService voyageService) {
-        this.vehiculeFetch = vehiculeFetch;
+    public VoyageController(UserFetch userFetch, VoyageService voyageService) {
+        this.userFetch = userFetch;
         this.voyageService = voyageService;
     }
 
+
     @PostMapping("/add")
-    public void saveVoyage(VoyageDTO voyage)
+    public String saveVoyageRest(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, VoyageDTO voyage)
     {
-        voyageService.saveVoyage(voyage);
+        User user = userFetch.getAuthenticated(token);
+        return voyageService.saveVoyage(voyage,user.getId()).toString();
+    }
+    @GetMapping("/getUser/{token}")
+    public String getUser(@PathVariable("token") String token)
+    {
+        return userFetch.getAuthenticated("Bearer "+token).getNom();
     }
 
     @GetMapping("/get")
-    public void getVoyages()
+    public List<Voyage> getVoyagesRest()
     {
-        voyageService.getVoyages();
+        return voyageService.getVoyages();
+    }
+    @MutationMapping
+    public String saveVoyage(@ContextValue String token,@Argument VoyageDTO voyage)
+    {
+        User user = userFetch.getAuthenticated(token);
+        return voyageService.saveVoyage(voyage,user.getId()).toString();
     }
 
-    @GetMapping("/getVehicule")
-    public Vehicule getVehicule()
+    @QueryMapping
+    public List<Voyage> getVoyages(@ContextValue String token)
     {
-        Vehicule vec = vehiculeFetch.getVehicule();
-        System.out.println(vec.getPlate());
-        return vehiculeFetch.getVehicule();
+        return voyageService.getVoyages();
     }
+
 }

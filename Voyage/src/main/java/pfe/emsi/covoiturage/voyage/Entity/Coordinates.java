@@ -28,4 +28,16 @@ public class Coordinates {
 
     public Coordinates() {
     }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public String getLabel() {
+        return Label;
+    }
 }

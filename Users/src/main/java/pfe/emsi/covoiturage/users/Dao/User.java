@@ -22,12 +22,14 @@ public class User {
     private String telephone;
     private Gender sexe;
     private int age;
+    private String cin;
+    @Transient
     private int nombre_voya;
     private Boolean banned = false;
 
     public User(){
     }
-    public User(String nom, String encode, String email, String prenom, String telephone, Gender sexe,int age, int nombre_voya, Boolean banned) {
+    public User(String nom, String encode, String email, String prenom, String telephone, Gender sexe,int age,String cin, int nombre_voya, Boolean banned) {
         this.nom = nom;
         this.password = encode;
         this.email = email;
@@ -37,7 +39,7 @@ public class User {
         this.age = age;
         this.nombre_voya = nombre_voya;
         this.banned = banned;
-
+        this.cin = cin;
     }
 
 }

@@ -12,8 +12,5 @@ public class UserDto {
     private String telephone;
     private Gender sexe;
     private int age;
-    private int nombre_voya;
-    private String N_permis;
     private String cin;
-    private Boolean banned = false;
 }

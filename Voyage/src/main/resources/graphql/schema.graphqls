@@ -1,0 +1,61 @@
+
+type Mutation {
+    saveVoyage(voyage:VoyageDTO):String
+}
+
+type Query {
+    getVoyages:[Voyage]
+}
+
+
+input VoyageDTO {
+    destinationX:Float
+    destinationY :Float
+    emplacementX: Float
+    emplacementY :Float
+    labelDestination: String
+    labelEmplacement: String
+    Tarif: Float
+    Duree:Int
+    Distance:Int
+#    time:
+}
+
+
+type User {
+    id:Float
+    nom:String
+    password:String
+    email:String
+    prenom:String
+    telephone:String
+    sexe:Gender
+    age:Int
+    cin:String
+    nombre_voya:Int
+    banned:Boolean
+}
+#
+enum Gender {
+    Homme
+    Femme
+}
+
+type Voyage{
+    id:Float
+    Destination:Coordinates
+    Emplacement:Coordinates
+    Tarif:Float
+    Duree:Int
+    Distance:Int
+    review:Int
+    driver:User
+    UserId:Float
+}
+
+type Coordinates{
+    x: Float
+    y: Float
+    Label: String
+}
+

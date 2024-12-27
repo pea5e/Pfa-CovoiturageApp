@@ -1,79 +1,80 @@
 
 type Mutation {
-    createUser(userDto: UserInput, passwordDto: PasswordInput): UserDto!
-    createPassenger(userDto: UserInput, passwordDto: PasswordInput): UserDto!
-    createDriver(userDto: UserInput, passwordDto: PasswordInput): UserDto!
-    updatePassword(userId: ID!, passwordDto: PasswordInput): Boolean!
-    updateDriver(userId: ID!, userDto: UserInput): Boolean!
-    updatePassenger(userId: ID!, userDto: UserInput): Boolean!
-    assignVehicle(userId: ID!, vehicleDto: VehicleInput): Vehicle!
+    createUser(userDto: UserInput): String
+#    createUser(userDto: UserInput, passwordDto: PasswordInput): UserDto!
+#    createPassenger(userDto: UserInput, passwordDto: PasswordInput): UserDto!
+#    createDriver(userDto: UserInput, passwordDto: PasswordInput): UserDto!
+#    updatePassword(userId: ID!, passwordDto: PasswordInput): Boolean!
+#    updateDriver(userId: ID!, userDto: UserInput): Boolean!
+#    updatePassenger(userId: ID!, userDto: UserInput): Boolean!
+#    assignVehicle(userId: ID!, vehicleDto: VehicleInput): Vehicle!
 }
 
 type Query {
-    getAllUsers: [UserDto!]!
-    getUser(userId: ID!): UserDto
-    getAllDrivers: [DriverDto!]!
-    getAllPassengers: [PassengerDto!]!
+#    getAllUsers: [UserDto!]!
+    getUserByEmail(email: String): User!
+    Authenticate(email: String,password: String): String
+#    getUser(userId: ID!): User
+#    getAllDrivers: [DriverDto!]!
+#    getAllPassengers: [PassengerDto!]!
 }
+
 
 input UserInput {
-    name: String
+    password: String
     nom: String
     email: String
     prenom: String
     telephone: String
     sexe: Gender
     age: Int
-    nombreVoya: Int
-    nPermis: String
     cin: String
-    banned: Boolean
 }
 
-input PasswordInput {
-    currentPassword: String!
-    newPassword: String!
-}
+#input PasswordInput {
+#    currentPassword: String!
+#    newPassword: String!
+#}
 
-input VehicleInput {
-    make: String
-    model: String
-    licensePlate: String
+#input VehicleInput {
+#    make: String
+#    model: String
+#    licensePlate: String
+#}
+#
+type User {
+    id:Float
+    nom:String
+    password:String
+    email:String
+    prenom:String
+    telephone:String
+    sexe:Gender
+    age:Int
+    cin:String
+    nombre_voya:Int
+    banned:Boolean
 }
-
-type UserDto {
-    id: ID!
-    name: String
-    nom: String
-    email: String
-    prenom: String
-    telephone: String
-    sexe: Gender
-    age: Int
-    nombreVoya: Int
-    nPermis: String
-    cin: String
-    banned: Boolean
-}
-
+#
 enum Gender {
-    Homme,Femme
+    Homme
+    Femme
 }
-
-
-type DriverDto {
-    id: ID!
-    userDetails: UserDto
-    vehicle: Vehicle
-}
-
-
-type PassengerDto {
-    id: ID!
-    userDetails: UserDto
-}
-
-
-type Vehicle {
-    id: ID!
-}
+#
+#
+#type DriverDto {
+#    id: ID!
+#    userDetails: UserDto
+#    vehicle: Vehicle
+#}
+#
+#
+#type PassengerDto {
+#    id: ID!
+#    userDetails: UserDto
+#}
+#
+#
+#type Vehicle {
+#    id: ID!
+#}
