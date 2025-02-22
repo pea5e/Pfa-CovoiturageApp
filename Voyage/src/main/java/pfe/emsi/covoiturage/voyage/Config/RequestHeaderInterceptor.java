@@ -1,5 +1,6 @@
 package pfe.emsi.covoiturage.voyage.Config;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.graphql.server.WebGraphQlInterceptor;
 import org.springframework.graphql.server.WebGraphQlRequest;
 import org.springframework.graphql.server.WebGraphQlResponse;
@@ -12,7 +13,7 @@ import java.util.Collections;
 class RequestHeaderInterceptor implements WebGraphQlInterceptor {
 
     @Override
-    public Mono<WebGraphQlResponse> intercept(WebGraphQlRequest request, Chain chain) {
+    public Mono<WebGraphQlResponse> intercept(WebGraphQlRequest request,Chain chain) {
         String value = request.getHeaders().getFirst("Authorization");
         System.out.println(value);
         request.configureExecutionInput((executionInput, builder) ->

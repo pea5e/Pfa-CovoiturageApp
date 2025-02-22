@@ -1,12 +1,18 @@
 
 type Mutation {
     saveVoyage(voyage:VoyageDTO):String
+    pay(payment:PaymentDTO):String
 }
 
 type Query {
     getVoyages:[Voyage]
 }
 
+type Subscription {
+    getVoyager(count : Int):String
+}
+
+scalar DateTime
 
 input VoyageDTO {
     destinationX:Float
@@ -18,7 +24,15 @@ input VoyageDTO {
     Tarif: Float
     Duree:Int
     Distance:Int
-#    time:
+    time:DateTime
+}
+
+input PaymentDTO {
+    Nom: String
+    Card: String
+    Expiry: String
+    Security: String
+    VoyageID: Float
 }
 
 
@@ -35,11 +49,12 @@ type User {
     nombre_voya:Int
     banned:Boolean
 }
-#
+
 enum Gender {
     Homme
     Femme
 }
+
 
 type Voyage{
     id:Float
@@ -51,6 +66,7 @@ type Voyage{
     review:Int
     driver:User
     UserId:Float
+    time:DateTime
 }
 
 type Coordinates{
