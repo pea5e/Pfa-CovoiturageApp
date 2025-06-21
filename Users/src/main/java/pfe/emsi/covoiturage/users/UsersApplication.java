@@ -10,13 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableDiscoveryClient
 @RestController
 public class UsersApplication {
-
-    @GetMapping("/")
-    public String get()
-    {
-        return  "helllllllllllloooooooooooo";
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(UsersApplication.class, args);
     }

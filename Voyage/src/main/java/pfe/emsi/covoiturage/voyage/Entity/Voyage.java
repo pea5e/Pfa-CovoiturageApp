@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 //@NoArgsConstructor
@@ -39,9 +40,9 @@ public class Voyage {
     @Transient
     private User driver;
     private Long UserId;
-//    private LocalDateTime time;
+    private LocalDateTime time;
 
-    public Voyage(Long id, Coordinates destination, Coordinates emplacement, float tarif, int duree, int distance, int review, Long UserId) {
+    public Voyage(Long id, Coordinates destination, Coordinates emplacement, float tarif, int duree, int distance, int review, Long UserId,LocalDateTime time) {
         this.id = id;
         Destination = destination;
         Emplacement = emplacement;
@@ -50,7 +51,7 @@ public class Voyage {
         Distance = distance;
         this.review = review;
         this.UserId = UserId;
-//        this.time = time;
+        this.time = time;
     }
 
     public Voyage() {
@@ -90,6 +91,10 @@ public class Voyage {
 
     public Long getUserId() {
         return UserId;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
     }
 
     public void setId(Long id) {

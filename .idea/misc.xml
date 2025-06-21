@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/Voyage/pom.xml" />
         <option value="$PROJECT_DIR$/Notification/pom.xml" />
         <option value="$PROJECT_DIR$/Config/pom.xml" />
+        <option value="$PROJECT_DIR$/Payment/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

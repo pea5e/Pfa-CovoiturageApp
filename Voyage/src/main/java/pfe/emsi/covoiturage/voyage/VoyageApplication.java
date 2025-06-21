@@ -10,7 +10,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 public class VoyageApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        
         SpringApplication.run(VoyageApplication.class, args);
     }
 
